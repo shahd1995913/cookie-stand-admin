@@ -1,89 +1,89 @@
 import React, { useState } from "react";
 
+import Footer from './Footer'
+
+import Create from './CreateForm.js';
+
+import Report from './ReportTable.js';
+
+
+
 export default function Main() {
 
-    const [cookie_Stand, set_CookieStand] = useState([]);
 
-    function form_cookies(e) {
+    const [report_table, setrepoert] = useState([])
+   
+    const [hours, sethours] = useState(['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'])
+   
+   
+    const [final_sum, setsum] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+
+    function onCreate(e) {
+
+        e.preventDefault();
+
+        let min = parseInt(e.target.min.value)
+
+        let max = parseInt(e.target.max.value)
         
-        e.prevedntDefault()
+        let avg = parseInt(e.target.avg.value)
 
-        const form_cookies = {
+        let count = 0
 
+
+        const store_data = {
+        
             loc: e.target.loc.value,
-            
-            min: e.target.min.value,
-            
-            max: e.target.max.value,
-            
-            avg: e.target.avg.value
+        
+            hour_sales: hours.map(() => Math.ceil(avg * (Math.ceil(Math.random() * (max - min) + min)))),
         }
-        setCookieStand([...cookie_Stand, form_cookies])
+
+        for (let j = 0; j < store_data.hour_sales.length; j++) {
+
+            count = count + store_data.hour_sales[i]
+
+        }
+
+        store_data.total = count
+
+
+        setrepoert([...report_table, store_data])
+
+
+
+        let total_sum = final_sum.map((i, idx) =>
+        
+        {
+
+
+            if (idx === final_sum.length - 1) {
+            
+                return i + store_data.total
+            }
+
+            return i + store_data.hour_sales[idx]
+        }
+        
+        )
+
+        
+        setsum(total_sum)
+
     }
 
     return (
-    
-    <main className="flex flex-col items-center px-10 text-center">
+        <>
+            <main className="">
+                
+        
+                <Create onCreate={onCreate} />
 
-            <div className="w-5/6 m-8 bg-green-400">
+                <Report report_table={report_table} hours={hours} final_sum={final_sum} />
 
-                <h1 className="m-4 text-3xl">Create Cookie Stand</h1>
+                <Footer report_table={report_table} />
 
-                <form onSubmit={form_cookies}>
-
-                    <label className="mr-2.5 text-xl">location</label>
-
-                    <input name="loc" className="w-10/12"></input>
-
-                    <div className="grid grid-cols-4 mt-4 mb-4">
-
-                        <section>
-
-                            
-                            <label className="text-xl">Minimum Customers per Hour</label>
-                            
-                            <input name="min" className="w-60"></input>
-                       
-                        </section>
-
-                        <section>
-                       
-                            <label className="text-xl">Maximum Customers per Hour</label>
-                       
-                            <input name="max" className="w-60"></input>
-                       
-                        </section>
-
-                        <section>
-                       
-                            <label className="text-xl">Average Cookies per Sale</label>
-                       
-                            <input name="avg" className="w-60"></input>
-                        </section>
-
-                        <button className="text-xl bg-green-600 w-60 h-14">Create</button>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-            <h3 className="">Report Table Coming Soon...</h3>
-
-            <div className="mt-4 text-center">
-                {
-                   cookieStand && cookieStand.map((item,index) => {
-                        return (
-                            <p  key={index} > {JSON.stringify(item)}</p>
-                        )
-                    })
-                }
-            </div>
-
-        </main>
+            </main>
+        </>
     )
 }
-
-
-

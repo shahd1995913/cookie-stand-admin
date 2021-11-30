@@ -1,12 +1,23 @@
+import Link from 'next/link'
 
-export default function Header() {
+export default function Header(props) {
 
     return (
+    
+    <header className="bg-green-600">
+
+    
+            <h2> Cookie Stand Admin</h2>
+    
         
-        <header className="p-4 bg-green-400 text-black-50">
-         
-            <h2 className="text-4xl">Cookie Stand Admin</h2>
+            <Link href='/Overview'>
+    
         
+                <a className="bg-blue-50">Overview</a>
+    
+        
+            </Link>
+    
         </header>
     )
 }
