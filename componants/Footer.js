@@ -1,12 +1,17 @@
 
 
-export default function Footer() {
+export default function Footer(props) 
 
-    return (
-        <footer className="p-4 bg-green-600 text-black-50">
+{
 
-            <h4 className="text-xl">&copy; 2021</h4>
+    return  (
+        
+          <footer className="bg-green-600">
 
-        </footer>
-    )
+              <h3>  {props.report.length} Locations World Wide  </h3>
+
+          </footer>
+  
+  )
+
 }
