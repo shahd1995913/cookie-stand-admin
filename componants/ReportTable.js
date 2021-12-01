@@ -16,10 +16,10 @@ export default function Report(props) {
                 >
                     <th className='px-2'>Location</th>
                     {
-                        props.hours.map(i => {
+                        props.hours.map((i,key) => {
                             return (
-                                
-                                <th>{i} </th>
+                              
+                                <th  key={`${key}`} >{i} </th>
                             )
 
                         }
@@ -40,9 +40,9 @@ export default function Report(props) {
                                 <>
                                     <td className='px-2 border border-black' >{store_data.loc}</td>
                                     {
-                                        store_data.hour_sales.map(i => {
+                                        store_data.hour_sales.map((i,key) => {
                                             return (
-                                                <td className='border border-black'> {i} </td>
+                                                <td  key={`${key}`}> {i} </td>
                                             )
                                         })
                                     }
@@ -69,9 +69,9 @@ export default function Report(props) {
                 <tfoot className='bg-green-400'>
                     <td >Totals</td>
                     {
-                        props.final_sum.map(i => {
+                        props.final_sum.map((i,key) => {
                             return (
-                                <td>{i}</td>
+                                <td  key={`${key}`}>{i}</td>
                             )
                         })
                     }

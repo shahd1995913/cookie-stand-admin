@@ -8,10 +8,14 @@ import Head from 'next/head'
 
 import Main from '../componants/Main'
 
+import LoginForm from '../componants/LoginForm'
 
+import { useAuth } from '../contexts/auth'
 
 
 export default function Home() {
+
+  const { user, login, logout } = useAuth();
 
   return (
     <div className="">
@@ -24,7 +28,9 @@ export default function Home() {
 
         <Header />
 
-        <Main />
+        {user? <Main /> : <LoginForm/> }
+
+
 
 
     </div>
